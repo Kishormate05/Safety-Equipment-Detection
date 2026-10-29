@@ -1,112 +1,172 @@
-# 🦺 Safety Equipment Detection using YOLOv8
+# 🦺 Safety Equipment Detection Using YOLOv8
 
-This project performs **real-time detection** of safety helmets and vests on individuals using **YOLOv8**. It helps monitor compliance with safety protocols in environments like construction sites and factories.
+## 📌 Project Overview
 
----
+**Safety Equipment Detection Using YOLOv8** is a computer vision project that detects safety helmets and vests worn by individuals in real time. It uses the YOLOv8 object detection model and OpenCV to process webcam feeds and video inputs.
+
+The system helps identify safety equipment compliance in construction sites, factories, and other industrial environments.
 
 ## 🚀 Features
 
-- 🔍 Detects **helmets** and **vests**
-- 👷‍♂️ Classifies people as:
-  - ✅ SAFE (Helmet + Vest)
-  - ⚠️ PARTIAL (Only Helmet or Only Vest)
-  - ❌ UNSAFE (No safety gear)
-- 🎨 Color-coded bounding boxes:
-  - Green = Safe
-  - Yellow = Vest only
-  - Cyan = Helmet only
-  - Red = No gear
-- 📹 Real-time webcam or video input
-- 🧠 Trainable on custom datasets
+- 🔍 Detects safety helmets and vests.
+- 👷 Classifies safety compliance into SAFE, PARTIAL, and UNSAFE.
+- 🎨 Displays color-coded bounding boxes for different safety statuses.
+- 📹 Supports real-time webcam and video input.
+- 🧠 Supports training on custom annotated datasets.
+- ⚡ Uses YOLOv8 for efficient object detection.
 
----
+## 🛠️ Technologies Used
+
+- Python
+- YOLOv8 (Ultralytics)
+- OpenCV
+- NumPy
+- Computer Vision
+- Deep Learning
 
 ## 📁 Project Structure
 
+```text
+Safety-Equipment-Detection/
+│
+├── safety_detection.py
+├── train.py
+├── yolov8n.pt
+│
+└── Q1/
+    ├── data.yaml
+    └── runs/
+        └── detect/
+            └── vest_helmet_final/
+                └── weights/
+                    └── best.pt
+│
+└── README.md
+```
 
-├── safety_detection.py # Inference script with bounding boxes<br>
-├── train.py # Model training using YOLOv8<br>
-├── yolov8n.pt # Pretrained YOLOv8 model<br>
-└── Q1/<br>
-├── data.yaml # Dataset configuration<br>
-└── runs/<br>
-└── detect/<br>
-└── vest_helmet_final/<br>
-└── weights/<br>
-└── best.pt # Trained model output<br>
+*Note: The folder structure above represents the expected project setup. Include the trained weights and dataset configuration if available.*
 
-
----
-
-## 🔗 Connect with Me
-
-- 🔗 GitHub: [@ADiTyaRaj8969](https://github.com/ADiTyaRaj8969)  
-- ✉️ Email: adivid198986@gmail.com  
-- 💼 LinkedIn: [Aditya Raj](https://www.linkedin.com/in/aditya-raj-710a5a291/)
-
----
 ## 📦 Installation
 
-Install required packages:
+### 1. Clone the Repository
+
+```bash
+git clone YOUR_GITHUB_REPOSITORY_URL
+cd Safety-Equipment-Detection
+```
+
+### 2. Install Dependencies
+
+Make sure Python 3 is installed, then run:
 
 ```bash
 pip install ultralytics opencv-python numpy
-#Training the Model
-Make sure your dataset is annotated and referenced in Q1/data.yaml.
+```
 
-To start training:
-bash
+## 🧠 Model Training
 
+Ensure that your dataset is annotated correctly and that `Q1/data.yaml` contains the correct dataset paths and class names.
+
+Run the training script:
+
+```bash
 python train.py
-The best model weights will be saved to:
-swift
+```
 
+After successful training, the best model weights should be available at:
+
+```text
 Q1/runs/detect/vest_helmet_final/weights/best.pt
- Running Inference
-Open safety_detection.py and ensure this path is set:
+```
 
-python
+The actual output directory depends on the configuration in `train.py`.
 
+## ▶️ Running Detection
+
+Open `safety_detection.py` and verify that the model path is configured correctly:
+
+```python
 MODEL_PATH = "Q1/runs/detect/vest_helmet_final/weights/best.pt"
-Run the detection:
+```
 
-bash
+Start the detection system:
 
+```bash
 python safety_detection.py
-Opens webcam by default (cv2.VideoCapture(0))
+```
 
-Press q to quit
+The webcam opens by default when `cv2.VideoCapture(0)` is used.
 
-🎨 Bounding Box Colors
-Status	Description	Box Color
-✅ SAFE	Helmet + Vest	Green
-⚠️ PARTIAL	Helmet only / Vest only	Cyan / Yellow
-❌ UNSAFE	No helmet, no vest	Red
+**Press `q` to exit the detection window.**
 
-🏷️ Class Labels (YOLO Format)
-Make sure your dataset uses the following labels:
+## 🎨 Safety Classification
 
-0: No Vest
+| Status | Description | Bounding Box Color |
+|---|---|---|
+| SAFE | Helmet and vest detected | Green |
+| PARTIAL | Only one required safety item detected | Cyan or Yellow |
+| UNSAFE | No required safety equipment detected | Red |
 
-1: Helmet
+The classification logic depends on the detected classes and must be configured in `safety_detection.py`.
 
-2: Vest
+## 🏷️ Dataset Classes
 
-These labels are used in both training and detection.
+The original project uses the following YOLO class mapping:
 
-🧰 Technologies Used
-YOLOv8 (Ultralytics)
+| Class ID | Class Name |
+|---|---|
+| 0 | No Vest |
+| 1 | Helmet |
+| 2 | Vest |
 
-OpenCV for video processing
+Ensure that the class IDs, names, and detection logic match your actual dataset annotations and trained model.
 
-Python 3
+## 📸 Output Preview
 
-📸 Output Preview
-Add sample screenshots or video demos here for better presentation.
+Add screenshots or a short video of the working detection system here.
 
-🙌 Contributing
-Pull requests are welcome! For major changes, open an issue first to discuss what you would like to change.
+Example:
 
-📬 Contact
-For suggestions or queries, feel free to raise an issue in this repository.
+- Helmet detection
+- Vest detection
+- SAFE classification
+- PARTIAL classification
+- UNSAFE classification
+
+## 🌍 Applications
+
+- Construction site safety monitoring
+- Industrial workplace surveillance
+- Factory safety compliance
+- Personal protective equipment (PPE) detection
+- Computer vision and deep learning applications
+
+## 🔮 Future Scope
+
+- Integration with CCTV cameras.
+- Automated alerts for safety violations.
+- Safety compliance reports and analytics.
+- Integration with real-time monitoring dashboards.
+- Improved detection accuracy using larger datasets.
+
+## 👨‍💻 About Me
+
+**Kishor Dadarao Mate**
+
+Final-Year B.Tech Student  
+Artificial Intelligence and Data Science
+
+Interested in Data Science, Machine Learning, Deep Learning, and Computer Vision.
+
+
+## 🤝 Contributing
+
+Contributions, suggestions, and improvements are welcome. Feel free to fork this repository and submit a pull request.
+
+## 📄 License
+
+This project is intended for educational and research purposes. Add an appropriate open-source license if you plan to distribute the project.
+
+---
+
 
