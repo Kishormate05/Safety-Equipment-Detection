@@ -5,7 +5,15 @@ import os
 import time
 
 # Load models
-VEST_MODEL_PATH = r"D:\Internship\AI GURU Internship\Final\Q1\runs\detect\vest_helmet_final\weights\best.pt"
+VEST_MODEL_PATH = os.path.join(
+    os.path.dirname(__file__),
+    "Q1",
+    "runs",
+    "detect",
+    "vest_helmet_final",
+    "weights",
+    "best.pt"
+)
 if not os.path.exists(VEST_MODEL_PATH):
     print(f"Error: Vest model not found at {os.path.abspath(VEST_MODEL_PATH)}")
     exit()
